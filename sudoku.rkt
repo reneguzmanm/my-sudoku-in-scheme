@@ -165,7 +165,7 @@
   )
 
 (define (valido? matriz idFila idColumna value)
-  (and(buscarEnFila (getFila matriz nFila 0) value)(buscarEnColumna matriz nColumna value))
+  (and(buscarEnFila (getFila matriz idFila 0) value)(buscarEnColumna matriz idColumna value))
   )
   
     
@@ -279,7 +279,7 @@
 ;PLAY
 
 (define(play board positionX positionY value)
-  (if(= (cadr(list-ref (list-ref fil) col)) 0)
+  (if(= (cadr(list-ref (list-ref positionY) positionX)) 0)
      board
      (modMatriz board positionY positionX value 1)
      )
