@@ -163,6 +163,10 @@
         )
      )
   )
+
+(define (valido? matriz idFila idColumna value)
+  (and(buscarEnFila (getFila matriz nFila 0) value)(buscarEnColumna matriz nColumna value))
+  )
   
     
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -252,6 +256,37 @@
        )
     )
   )
-       
+
+;CHECKBOARD
+
+(define(checkBoard board)
+  (checkAux board 0 0)
+  )
+
+(define(checkAux board fil col)
+  (if(= (length board) fil)
+     #t
+     (if(= (length board) col)
+        (checkAux board (+ fil 1) 0)
+        (if(valido? board fil col (car(list-ref (list-ref fil) col)))
+           (checkAux board fil (+ col 1))
+           #f
+           )
+        )
+     )
+  )
         
-        
+;PLAY
+
+(define(play board positionX positionY value)
+  (if(= (cadr(list-ref (list-ref fil) col)) 0)
+     board
+     (modMatriz board positionY positionX value 1)
+     )
+  )
+     
+  
+  
+  
+
+
